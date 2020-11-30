@@ -11,9 +11,11 @@
 
   <body>
     <% flash.each do |key, value| %>
-      <p>
-        <%= value %>
-      </p>
+      <div class="alert alert-warning alert-dismissible fade in" role="alert">
+        <p>
+          <a data-dismiss="alert"><%= value %></a>
+        </p>
+      </div>
     <% end %> 
     <%= yield %>
   </body>
