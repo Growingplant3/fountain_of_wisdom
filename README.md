@@ -4,6 +4,6 @@
 | ---- | ---- |
 | name | string |
 | detail | text |
-| prioriry | integer |
+| priority | integer |
 | situation | integer |
 | deadline | time |
