@@ -9,7 +9,7 @@ class Task < ApplicationRecord
     unknown: 0,
     low: 1,
     middle: 2,
-    hight: 3
+    high: 3
   }
   enum situation: {
     stand_by: 0,
