@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[show]
+  before_action :set_task, only: %i[show edit]
 
   def index
     @tasks = Task.all.order(created_at: "desc")
@@ -21,6 +21,9 @@ class TasksController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
   end
 
   private
