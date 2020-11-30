@@ -22,9 +22,11 @@
 
     <div>
       <%= f.label :deadline %>
-      <%= f.date_field :deadline %>
+      <%= f.datetime_field :deadline %>
     </div>
 
     <%= f.submit "登録する" %>
   </div>
 <% end %>
+
+<%= link_to t('helpers.submit.task_index'), tasks_path %>
