@@ -9,6 +9,13 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    if @task.save
+      flash[:notice] = "タスクの登録に成功しました。"
+      redirect_to tasks_path
+    else
+      flash.now[:alert] = "タスクの登録に失敗しました。"
+      render :new
+    end
   end
 
   private
