@@ -1,0 +1,30 @@
+<%= form_with(model: task, local: true) do |f| %>
+  <div>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div>
+      <%= f.label :detail %>
+      <%= f.text_field :detail %>
+    </div>
+
+    <div>
+      <%= f.label :priority %>
+      <%= f.text_field :priority %>
+    </div>
+
+    <div>
+      <%= f.label :situation %>
+      <%= f.text_field :situation %>
+    </div>
+
+    <div>
+      <%= f.label :deadline %>
+      <%= f.date_field :deadline %>
+    </div>
+
+    <%= f.submit "登録する" %>
+  </div>
+<% end %>
