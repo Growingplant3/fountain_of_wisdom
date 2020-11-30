@@ -7,8 +7,7 @@
   <% count +=1 %>
   <h2><%= t('activerecord.models.task') + "#{count}" %></h2>
   <div>
-    <p><%= t('activerecord.attributes.task.name') %>：<%= task.name %></p>
-    <p><%= t('activerecord.attributes.task.detail') %>：<%= task.detail %></p>
+    <p><%= t('activerecord.attributes.task.name') %>：<%= link_to "#{task.name}", task_path(task) %></p>
     <p><%= t('activerecord.attributes.task.priority') %>：<%= task.priority_i18n %></p>
     <p><%= t('activerecord.attributes.task.situation') %>：<%= task.situation_i18n %></p>
     <p><%= t('activerecord.attributes.task.deadline') %>：<%= task.deadline.strftime("%Y年%m月%d日 %H時%M分") %></p>
