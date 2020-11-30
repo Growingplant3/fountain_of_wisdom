@@ -1,7 +1,7 @@
 ja:
   activerecord:
     models:
-      task: タスク一覧
+      task: タスク
     attributes:
       task:
         name: タスク名
