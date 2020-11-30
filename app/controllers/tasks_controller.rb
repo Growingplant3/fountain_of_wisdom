@@ -13,7 +13,7 @@ class TasksController < ApplicationController
       flash[:notice] = "タスクの登録に成功しました。"
       redirect_to tasks_path
     else
-      flash.now[:alert] = "タスクの登録に失敗しました。"
+      flash.now[:danger] = "タスクの登録に失敗しました。"
       render :new
     end
   end
