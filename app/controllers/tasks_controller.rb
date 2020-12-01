@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[show edit]
+  before_action :set_task, only: %i[show edit destroy]
 
   def index
     @tasks = Task.all.order(created_at: "desc")
@@ -24,6 +24,12 @@ class TasksController < ApplicationController
   end
 
   def edit
+  end
+
+  def destroy
+    @task.destroy
+    flash[:danger] = "タスクの削除に成功しました。"
+    redirect_to tasks_path
   end
 
   private
