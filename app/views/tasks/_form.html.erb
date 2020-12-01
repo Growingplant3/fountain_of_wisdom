@@ -9,7 +9,7 @@
   </div>
 <% end %>
 
-<%= form_with(model: task, local: true) do |f| %>
+<%= form_with(model: task, local: true, url: change_root ) do |f| %>
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, class: "form-control" %>
@@ -35,7 +35,12 @@
     <%= f.datetime_field :deadline, class: "form-control" %>
   </div>
 
-  <%= f.submit "登録する" %>
+  <% case action_name %>
+  <% when "new" %>
+    <%= f.submit t('helpers.submit.create') %>
+  <% when "edit" %>
+    <%= f.submit t('helpers.submit.update') %>  
+  <% end %>
 <% end %>
 
 <%= link_to t('helpers.submit.task_index'), tasks_path %>
