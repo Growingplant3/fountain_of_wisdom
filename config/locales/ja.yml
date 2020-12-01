@@ -160,6 +160,7 @@
         task_index: タスク一覧に戻る
         task_edit: タスクを編集する
         task_destroy: タスクを削除する
+        really?: 本当に削除してもよろしいですか？
     number:
       currency:
         format:
