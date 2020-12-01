@@ -6,4 +6,4 @@
 | detail | text |
 | priority | integer |
 | situation | integer |
-| deadline | time |
+| deadline | datetime |
