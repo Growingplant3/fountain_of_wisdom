@@ -27,6 +27,14 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
+  # Test
+  gem 'rspec-rails', '~> 3.8'
+  gem 'factory_bot_rails'
+end
+
+group :test do
+  gem 'capybara', '>= 2.15'
+  gem 'webdrivers'
 end
 
 group :development do
