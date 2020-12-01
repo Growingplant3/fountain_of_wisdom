@@ -1,4 +1,4 @@
-<h1>editだよ</h1>
+<h1>タスクの編集</h1>
 <hr>
 
-<%= link_to t('helpers.submit.task_index'), tasks_path %>
+<%= render partial: "form", locals: { task: @task } %>
