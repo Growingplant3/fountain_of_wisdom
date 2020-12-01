@@ -159,6 +159,7 @@
         task_create: タスクを新規作成する
         task_index: タスク一覧に戻る
         task_edit: タスクを編集する
+        task_destroy: タスクを削除する
     number:
       currency:
         format:
