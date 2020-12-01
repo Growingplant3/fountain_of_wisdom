@@ -9,4 +9,6 @@
 
 <%= link_to t('helpers.submit.task_edit'), edit_task_path(@task) %>
 <br>
+<%= link_to t('helpers.submit.task_destroy'), task_path(@task), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } %>
+<br>
 <%= link_to t('helpers.submit.task_index'), tasks_path %>
