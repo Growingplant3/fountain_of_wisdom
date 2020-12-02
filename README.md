@@ -24,7 +24,7 @@ $ git remote -v
 ```
 4. gitと連携する
 ```
-$ git remote リポジトリ名 URL
+$ git remote add リポジトリ名 URL
 ```
 > リポジトリ名：Heroku(を使うのが一般的)<br>
 > URL：アプリ名.gitで記述された絶対パス<br>
