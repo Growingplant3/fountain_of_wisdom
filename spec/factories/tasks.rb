@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :task do
-    name { "忘年会" }
+    name { "正しいデータ10000" }
     detail { nil }
     priority { 0 }
     situation { 0 }
