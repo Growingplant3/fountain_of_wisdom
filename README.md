@@ -18,46 +18,46 @@ $ heroku login
 ```
 $ heroku create
 ```
-3. gitとの連携を確認する(連携していれば5へ、連携していなければ4へ)
+3. アプリ名の確認(画面上にアプリ名が出力されます)
+```
+$ heroku config
+```
+4. gitとの連携を確認する(連携していれば6へ、連携していなければ5へ)
 ```
 $ git remote -v
 ```
-4. gitと連携する
+5. gitと連携する
 ```
 $ git remote add リポジトリ名 URL
 ```
-> リポジトリ名：Heroku(を使うのが一般的)<br>
-> URL：アプリ名.gitで記述された絶対パス<br>
-
-5. 作業ツリーに差分がないか確認する(差分があれば6へ、差分がなければ7へ)
+> リポジトリ名：heroku(を使うのが一般的)<br>
+> URL： https://git.heroku.com/アプリ名.gitで記述されたパス<br>
+6. 作業ツリーに差分がないか確認する(差分があれば7へ、差分がなければ8へ)
 ```
 $ git status
 ```
-6. 差分をコミットする
+7. 差分をコミットする
 ```
 $ git add .
 $ git commit -m "コミット名"
 ```
-7. Heroku上でコンパイルの用意をする(2回目以降は不要です)
+8. Heroku上でコンパイルの用意をする(2回目以降は不要です)
 ```
 $ heroku buildpacks:set heroku/ruby
 $ heroku buildpacks:add --index 1 heroku/nodejs
 ```
-8. Herokuにデプロイする
+9. Herokuにデプロイする
 ```
 $ git push リポジトリ名 master
 ```
-> リポジトリ名は`$ git remote`で設定したものと同じです<br>
+> リポジトリ名は`$ git remote add`で設定したものと同じです<br>
 > masterは自分の環境で使っているブランチ名に適宜置き換えてください<br>
-9. マイグレーションの実行
+10. マイグレーションの実行
 ```
 $ heroku run rails db:migrate
 ```
 > `$ heroku run rails db:create`は既に自動で実行されたので不要です
-10. アプリ名の確認(画面上にアプリ名が出力されます)
-```
-$ heroku config
-```
+
 11. アプリの確認
 ```
 https://アプリ名.herokuapp.com/
