@@ -37,7 +37,6 @@ $ git status
 ```
 $ git add .
 $ git commit -m "コミット名"
-$ git push origin master
 ```
 7. Heroku上でコンパイルの用意をする(2回目以降は不要です)
 ```
