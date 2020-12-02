@@ -27,7 +27,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         task2 = FactoryBot.create(:task, name: "正しいデータ10002")
         visit tasks_path
         task_first = first('.task_row')
-        expect(task_first.text.slice(5..15)).to eq "正しいデータ10002"
+        expect(task_first.text).to include "正しいデータ10002"
       end
     end
   end
