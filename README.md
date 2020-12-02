@@ -31,7 +31,7 @@ $ git remote -v
 $ git remote add リポジトリ名 URL
 ```
 > リポジトリ名：heroku(を使うのが一般的)<br>
-> URL： https://git.heroku.com/アプリ名.gitで記述されたパス<br>
+> URL： https://git.heroku.com/アプリ名.git で記述されたパス<br>
 6. 作業ツリーに差分がないか確認する(差分があれば7へ、差分がなければ8へ)
 ```
 $ git status
