@@ -62,4 +62,4 @@ $ heroku config
 ```
 https://アプリ名.herokuapp.com/
 ```
-ブラウザ上にルートパス(config/routes.rbで記述したもの)が正しく表示されていれば、お使いのHerokuは正常にデプロイされました
+ブラウザ上にルートパス(config/routes.rbで記述したもの)が正しく表示されていれば、Herokuはのデプロイは正常に終了しました
