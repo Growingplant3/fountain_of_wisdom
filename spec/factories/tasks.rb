@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :task do
-    name { "正しいデータ10000" }
+    name { "正しいデータ0" }
     detail { nil }
     priority { 0 }
     situation { 0 }
