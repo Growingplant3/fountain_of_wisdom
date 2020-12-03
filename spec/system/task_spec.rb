@@ -38,6 +38,23 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_list.last.text).to include "正しいデータ0"
       end
     end
+    context 'タスクが終了期限の降順に並んでいる場合' do
+      before {
+        FactoryBot.create(:task, name: "正しいデータ2", deadline: "(3000/01/03).to_datetime")
+        FactoryBot.create(:task, name: "正しいデータ1", deadline: "(3000/01/02).to_datetime")
+        task
+      }
+      it '期限の長いタスクが一番上に表示される' do
+        visit tasks_path(sort_expired: "true")
+        task_list = all('.task_row')
+        expect(task_list.first.text).to include "3000年01月03日"
+      end
+      it '期限の短いタスクが一番下に表示される' do
+        visit tasks_path(sort_expired: "true")
+        task_list = all('.task_row')
+        expect(task_list.last.text).to include "3000年01月01日"
+      end
+    end
   end
   describe '詳細表示機能' do
     context '任意のタスク詳細画面に遷移した場合' do
