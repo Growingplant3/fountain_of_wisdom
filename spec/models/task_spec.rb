@@ -38,4 +38,37 @@ RSpec.describe 'タスクモデル機能', type: :model do
       end
     end
   end
+  describe '検索機能' do
+    let!(:task) { FactoryBot.create(:task) }
+    let!(:task_1) { FactoryBot.create(:task, name:"正しいデータ1", situation: 1) }
+    let!(:task_2) { FactoryBot.create(:task, name:"楽しい旅行データ0", situation: 0) }
+    let!(:task_3) { FactoryBot.create(:task, name:"楽しい旅行データ1", situation: 1) }
+    let!(:task_4) { FactoryBot.create(:task, name:"楽しいデータ0", situation: 2) }
+    context 'scopeメソッドでタイトルのあいまい検索をした場合' do
+      it "検索キーワードを含むタスクが絞り込まれる" do
+        expect(Task.ambiguous_name("正しい")).to include(task)
+        expect(Task.ambiguous_name("正しい")).not_to include(task_2)
+        expect(Task.ambiguous_name("楽しい旅行")).not_to include(task_1)
+        expect(Task.ambiguous_name("楽しい旅行")).to include(task_3)
+        expect(Task.ambiguous_name("楽しいデータ").count).to eq 1
+        expect(Task.ambiguous_name("").count).to eq 5
+      end
+    end
+    context 'scopeメソッドでステータス検索をした場合' do
+      it "ステータスに完全一致するタスクが絞り込まれる" do
+        expect(Task.situation_value("stand_by")).to include(task_2)
+        expect(Task.situation_value("started")).not_to include(task_2)
+        expect(Task.situation_value("finished")).not_to include(task_2)
+        expect(Task.situation_value(nil).count).to eq 0
+      end
+    end
+    context 'scopeメソッドでタイトルのあいまい検索とステータス検索をした場合' do
+      it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
+        expect(Task.ambiguous_name("データ").situation_value("started").count).to eq 2
+        expect(Task.ambiguous_name("旅行").situation_value("started")).to include(task_3)
+        expect(Task.ambiguous_name("正しい").situation_value("finished").count).to eq 0
+        expect(Task.ambiguous_name("楽しい").situation_value("finished")).to include(task_4)
+      end
+    end
+  end
 end
