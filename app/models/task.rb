@@ -23,4 +23,7 @@ class Task < ApplicationRecord
     started: 1,
     finished: 2
   }
+
+  scope :ambiguous_name, -> (ambiguous_name) { where('name LIKE ?', "%#{ambiguous_name}%") }
+  scope :situation_value, -> (situation_value) { where(situation: situation_value) }
 end
