@@ -158,6 +158,7 @@
         create: 登録する
         submit: 保存する
         update: 更新する
+        search: 検索する
         task_create: タスクを新規作成する
         task_index: タスク一覧に戻る
         task_edit: タスクを編集する
