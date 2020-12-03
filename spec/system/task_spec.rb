@@ -7,34 +7,35 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in "task_name", with: "正しいタスク名"
         fill_in "task_detail", with: "正しいタスク詳細"
-        fill_in "task_deadline", with: "#{DateTime.now + 1.day}"
+        fill_in "task_deadline", with: "003000-12-31T23:59"
         click_on "登録する"
-        expect(page.text).to include "正しいタスク名" && "正しいタスク詳細"
+        expect(page.text).to include "正しいタスク名" && "正しいタスク詳細" && "不明" && "未着手" && "3000年12月31日 23時59分"
       end
     end
   end
   describe '一覧表示機能' do
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
+        task
         visit tasks_path
-        expect(page).to have_content "タスク一覧"
+        expect(page).to have_content "タスク一覧" && "正しいデータ0"
       end
     end
     context 'タスクが作成日時の降順に並んでいる場合' do
       before {
-        task0 = task
-        task1 = FactoryBot.create(:task, name: "正しいデータ10001")
-        task2 = FactoryBot.create(:task, name: "正しいデータ10002")
+        task
+        FactoryBot.create(:task, name: "正しいデータ1")
+        FactoryBot.create(:task, name: "正しいデータ2")
       }
       it '新しいタスクが一番上に表示される' do
         visit tasks_path
         task_list = all('.task_row')
-        expect(task_list.first.text).to include "正しいデータ10002"
+        expect(task_list.first.text).to include "正しいデータ2"
       end
       it '古いタスクが一番下に表示される' do
         visit tasks_path
         task_list = all('.task_row')
-        expect(task_list.last.text).to include "正しいデータ10000"
+        expect(task_list.last.text).to include "正しいデータ0"
       end
     end
   end
@@ -42,7 +43,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     context '任意のタスク詳細画面に遷移した場合' do
       it '該当タスクの内容が表示される' do
         visit task_path(task)
-        expect(page).to have_content "タスクの詳細"
+        expect(page).to have_content "タスクの詳細" && "正しいデータ0"
       end
     end
   end
