@@ -3,6 +3,26 @@
 <br>
 <%= link_to t('helpers.submit.sort_expired'), tasks_path(sort_expired: "true") %>
 <hr>
+<h2>条件で絞り込む</h2>
+<p>
+  タスク名と進行状況でタスクの検索が可能です<br>
+  タスク名は検索したい文字を入力欄に記述し、進行状況はプルダウンから選択してください<br>
+  片方だけの検索も可能です
+</p>
+<%= form_with(model: Task.new(situation: nil), local: true, url: tasks_path, method: :get ) do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :situation %>
+    <%= f.select :situation, Task.situations_i18n.invert, { include_blank: true }, class: "form-control" %>
+  </div>
+
+  <%= f.submit "検索する" %>
+<% end %>
+<hr>
 
 <% count = 0 %>
 <% @tasks.each do |task| %>
