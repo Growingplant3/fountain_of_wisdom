@@ -164,6 +164,7 @@
         task_edit: タスクを編集する
         task_destroy: タスクを削除する
         sort_expired: 終了期限の降順で並べ替える
+        sort_importance: 優先順位の降順で並べ替える
         really?: 本当に削除してもよろしいですか？
     number:
       currency:
