@@ -7,6 +7,10 @@ class TasksController < ApplicationController
     else
       @tasks = Task.all.order(created_at: "desc")
     end
+    if params[:task]
+      @tasks = @tasks.ambiguous_name(params[:task][:name]) unless params[:task][:name].blank?
+      @tasks = @tasks.situation_value(params[:task][:situation]) unless params[:task][:situation].blank?
+    end
   end
 
   def new
