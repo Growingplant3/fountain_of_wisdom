@@ -2,8 +2,8 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
 
   def index
-    if params[:sort_expired]
-      @tasks = Task.all.order(deadline: "desc")
+    if params[:sort_expired] || params[:sort_importance]
+      @tasks = Task.all.order(sort_type(params))
     else
       @tasks = Task.all.order(created_at: "desc")
     end
@@ -57,5 +57,15 @@ class TasksController < ApplicationController
 
   def set_task
     @task = Task.find(params[:id])
+  end
+
+  def sort_type(params)
+    if params[:sort_expired]
+      flash[:notice] = "終了期限で並べ替えました。"
+      { deadline: "desc" }
+    elsif params[:sort_importance]
+      flash[:notice] = "優先順位で並べ替えました。"
+      { priority: "desc" }
+    end
   end
 end
