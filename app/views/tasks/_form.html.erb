@@ -1,6 +1,6 @@
 <% if task.errors.any? %>
   <div class="alert alert-danger" role="alert">
-    <h2><%= pluralize(task.errors.count, "個のエラーがあるため、保存できません。") %></h2>
+    <h2><%= pluralize(task.errors.count, t('errors.messages.can_not_create_because_have_any_error')) %></h2>
     <ul>
       <% task.errors.full_messages.each do |message| %>
         <li><%= message %></li>

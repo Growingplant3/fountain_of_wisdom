@@ -9,3 +9,9 @@ ja:
         priority: 優先順位
         situation: 進行状況
         deadline: 終了期限
+    title:
+      task:
+        index: タスク一覧
+        new: タスクの作成
+        show: タスクの詳細
+        edit: タスクの編集

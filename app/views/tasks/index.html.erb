@@ -1,4 +1,4 @@
-<h1>タスク一覧</h1>
+<h1><%= t('activerecord.title.task.index') %></h1>
 <%= link_to t('helpers.submit.task_create'), new_task_path %>
 <hr>
 
@@ -6,7 +6,7 @@
 <% @tasks.each do |task| %>
   <% count +=1 %>
   <h2><%= t('activerecord.models.task') + "#{count}" %></h2>
-  <div>
+  <div class="task_row">
     <p><%= t('activerecord.attributes.task.name') %>：<%= link_to "#{task.name}", task_path(task) %></p>
     <p><%= t('activerecord.attributes.task.priority') %>：<%= task.priority_i18n %></p>
     <p><%= t('activerecord.attributes.task.situation') %>：<%= task.situation_i18n %></p>
