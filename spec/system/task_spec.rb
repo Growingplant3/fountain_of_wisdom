@@ -9,7 +9,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in "task_detail", with: "正しいタスク詳細"
         fill_in "task_deadline", with: "003000-12-31T23:59"
         click_on "登録する"
-        expect(page.text).to include "正しいタスク名" && "正しいタスク詳細" && "不明" && "未着手" && "3000年12月31日 23時59分"
+        expect(page.text).to include "正しいタスク名" && "正しいタスク詳細" && "低" && "未着手" && "3000年12月31日 23時59分"
       end
     end
   end
@@ -18,8 +18,14 @@ RSpec.describe 'タスク管理機能', type: :system do
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
         task
+        FactoryBot.create(:task, name: "正しいデータ1")
+        FactoryBot.create(:task, name: "正しいデータ2")
         visit tasks_path
-        expect(page).to have_content "タスク一覧" && "正しいデータ0"
+        task_list = all('.task_row')
+        expect(page).to have_content "タスク一覧"
+        expect(task_list[0].text).to include "正しいデータ2"
+        expect(task_list[1].text).to include "正しいデータ1"
+        expect(task_list[2].text).to include "正しいデータ0"
       end
     end
 
@@ -62,8 +68,8 @@ RSpec.describe 'タスク管理機能', type: :system do
 
     context 'タスクが優先順位の降順に並んでいる場合' do
       before {
-        FactoryBot.create(:task, name: "正しいデータ2", priority: 2)
-        FactoryBot.create(:task, name: "正しいデータ3", priority: 3)
+        FactoryBot.create(:task, name: "正しいデータ2", priority: 1)
+        FactoryBot.create(:task, name: "正しいデータ3", priority: 2)
         task
         FactoryBot.create(:task, name: "正しいデータ1", priority: 1)
       }
@@ -71,13 +77,13 @@ RSpec.describe 'タスク管理機能', type: :system do
       it '優先度の高いタスクが一番上に表示される' do
         visit tasks_path(sort_importance: "true")
         task_list = all('.task_row')
-        expect(task_list.first.text).to include "高い"
+        expect(task_list.first.text).to include "高"
       end
 
       it '優先度の低いタスクが一番下に表示される' do
         visit tasks_path(sort_importance: "true")
         task_list = all('.task_row')
-        expect(task_list.last.text).to include "不明"
+        expect(task_list.last.text).to include "低"
       end
     end
 
@@ -88,7 +94,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         FactoryBot.create(:task, name: "正しい旅行0", situation: 1)
         FactoryBot.create(:task, name: "正しい旅行1", situation: 2)
       }
-      subject{
+      subject {
         click_on "検索する"
         task_list = all('.task_row')
         task_list.length
