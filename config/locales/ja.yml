@@ -3,10 +3,9 @@
     enums:
       task:
         priority:
-          unknown: 不明
-          low: 低い
-          middle: 普通
-          high: 高い
+          low: 低
+          middle: 中
+          high: 高
         situation:
           stand_by: 未着手
           started: 着手
