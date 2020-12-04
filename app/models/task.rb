@@ -13,10 +13,9 @@ class Task < ApplicationRecord
   end
 
   enum priority: {
-    unknown: 0,
-    low: 1,
-    middle: 2,
-    high: 3
+    low: 0,
+    middle: 1,
+    high: 2
   }
   enum situation: {
     stand_by: 0,
