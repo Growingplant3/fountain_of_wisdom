@@ -166,6 +166,14 @@
         sort_expired: 終了期限の降順で並べ替える
         sort_importance: 優先順位の降順で並べ替える
         really?: 本当に削除してもよろしいですか？
+      page_entries_info:
+        one_page:
+          display_entries:
+            zero: "該当する%{entry_name}は見つかりませんでした"
+            one: "該当する%{entry_name}は<b>1</b>件だけです"
+            other: "全<b>%{count}</b>件の%{entry_name}を表示中"
+        more_pages:
+          display_entries: "全%{total}</b>件中 %{first}&nbsp;-&nbsp;%{last} の%{entry_name}を表示中<b>"
     number:
       currency:
         format:
@@ -226,3 +234,10 @@
         long: "%Y/%m/%d %H:%M"
         short: "%m/%d %H:%M"
       pm: 午後
+    views:
+      pagination:
+        first: "&lt;&lt;"
+        last: "&gt;&gt;"
+        previous: "&lt;"
+        next: "&gt;"
+        truncate: "&hellip;"
