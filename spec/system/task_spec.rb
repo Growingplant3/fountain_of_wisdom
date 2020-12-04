@@ -13,6 +13,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
   end
+
   describe '一覧表示機能' do
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
@@ -21,6 +22,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(page).to have_content "タスク一覧" && "正しいデータ0"
       end
     end
+
     context 'タスクが作成日時の降順に並んでいる場合' do
       before {
         task
@@ -38,6 +40,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_list.last.text).to include "正しいデータ0"
       end
     end
+
     context 'タスクが終了期限の降順に並んでいる場合' do
       before {
         FactoryBot.create(:task, name: "正しいデータ2", deadline: "(3000/01/03).to_datetime")
@@ -49,12 +52,35 @@ RSpec.describe 'タスク管理機能', type: :system do
         task_list = all('.task_row')
         expect(task_list.first.text).to include "3000年01月03日"
       end
+
       it '期限の短いタスクが一番下に表示される' do
         visit tasks_path(sort_expired: "true")
         task_list = all('.task_row')
         expect(task_list.last.text).to include "3000年01月01日"
       end
     end
+
+    context 'タスクが優先順位の降順に並んでいる場合' do
+      before {
+        FactoryBot.create(:task, name: "正しいデータ2", priority: 2)
+        FactoryBot.create(:task, name: "正しいデータ3", priority: 3)
+        task
+        FactoryBot.create(:task, name: "正しいデータ1", priority: 1)
+      }
+
+      it '優先度の高いタスクが一番上に表示される' do
+        visit tasks_path(sort_importance: "true")
+        task_list = all('.task_row')
+        expect(task_list.first.text).to include "高い"
+      end
+
+      it '優先度の低いタスクが一番下に表示される' do
+        visit tasks_path(sort_importance: "true")
+        task_list = all('.task_row')
+        expect(task_list.last.text).to include "不明"
+      end
+    end
+
     context '条件検索をした場合' do
       before {
         task
@@ -67,16 +93,19 @@ RSpec.describe 'タスク管理機能', type: :system do
         task_list = all('.task_row')
         task_list.length
       }
+
       it 'タスク名で検索ができる' do
         visit tasks_path
         fill_in "task_name", with: "正しいデータ0"
         is_expected.to eq 1
       end
+
       it '進行状況で検索ができる' do
         visit tasks_path
         find("option[value='finished']").select_option
         is_expected.to eq 1
       end
+
       it 'タスク名と進行状況で検索ができる' do
         visit tasks_path
         fill_in "task_name", with: "正しい旅行"
@@ -85,6 +114,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
   end
+
   describe '詳細表示機能' do
     context '任意のタスク詳細画面に遷移した場合' do
       it '該当タスクの内容が表示される' do
