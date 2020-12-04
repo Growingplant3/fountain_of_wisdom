@@ -11,6 +11,7 @@ class TasksController < ApplicationController
       @tasks = @tasks.ambiguous_name(params[:task][:name]) unless params[:task][:name].blank?
       @tasks = @tasks.situation_value(params[:task][:situation]) unless params[:task][:situation].blank?
     end
+    @tasks = @tasks.page params[:page]
   end
 
   def new
