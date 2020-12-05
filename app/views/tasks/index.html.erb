@@ -1,12 +1,41 @@
 <h1><%= t('activerecord.title.task.index') %></h1>
 <%= link_to t('helpers.submit.task_create'), new_task_path %>
+<br>
+<%= link_to t('helpers.submit.sort_expired'), tasks_path(sort_expired: "true") %>
+<br>
+<%= link_to t('helpers.submit.sort_importance'), tasks_path(sort_importance: "true") %>
+<div class="panel panel-default">
+  <h2 class="panel-heading"><%= t('activerecord.title.task.search') %></h2>
+  <p class="panel-body">
+    タスク名と進行状況でタスクの検索が可能です<br>
+    タスク名は検索したい文字を入力欄に記述し、進行状況はプルダウンから選択してください<br>
+    片方だけの検索も可能です
+  </p>
+  <div class="panel-footer">
+    <%= form_with(model: Task.new(situation: nil), local: true, url: tasks_path, method: :get ) do |f| %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :situation %>
+        <%= f.select :situation, Task.situations_i18n.invert, { include_blank: true }, class: "form-control" %>
+      </div>
+
+      <%= f.submit t('helpers.submit.search') %>
+    <% end %>
+  </div>
+</div>
 <hr>
+
+<h2><%= page_entries_info @tasks %></h2>
 
 <% count = 0 %>
 <% @tasks.each do |task| %>
   <% count +=1 %>
   <h2><%= t('activerecord.models.task') + "#{count}" %></h2>
-  <div class="task_row">
+  <div class="task_row jumbotron">
     <p><%= t('activerecord.attributes.task.name') %>：<%= link_to "#{task.name}", task_path(task) %></p>
     <p><%= t('activerecord.attributes.task.priority') %>：<%= task.priority_i18n %></p>
     <p><%= t('activerecord.attributes.task.situation') %>：<%= task.situation_i18n %></p>
@@ -14,3 +43,5 @@
   </div>
   <hr>
 <% end %>
+
+<h2><%= paginate @tasks %></h2>

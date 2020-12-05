@@ -13,14 +13,16 @@ class Task < ApplicationRecord
   end
 
   enum priority: {
-    unknown: 0,
-    low: 1,
-    middle: 2,
-    high: 3
+    low: 0,
+    middle: 1,
+    high: 2
   }
   enum situation: {
     stand_by: 0,
     started: 1,
     finished: 2
   }
+
+  scope :ambiguous_name, -> (ambiguous_name) { where('name LIKE ?', "%#{ambiguous_name}%") }
+  scope :situation_value, -> (situation_value) { where(situation: situation_value) }
 end

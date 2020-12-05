@@ -4,6 +4,6 @@ FactoryBot.define do
     detail { nil }
     priority { 0 }
     situation { 0 }
-    deadline { DateTime.now + 1.day }  
+    deadline { "3000/01/01".to_datetime }  
   end
 end
