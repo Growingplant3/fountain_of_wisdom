@@ -7,9 +7,11 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in "task_name", with: "正しいタスク名"
         fill_in "task_detail", with: "正しいタスク詳細"
+        find("option[value='high']").select_option
+        find("option[value='finished']").select_option
         fill_in "task_deadline", with: "003000-12-31T23:59"
         click_on "登録する"
-        expect(page.text).to include "正しいタスク名" && "正しいタスク詳細" && "低" && "未着手" && "3000年12月31日 23時59分"
+        expect(page.text).to include "正しいタスク名" && "正しいタスク詳細" && "高" && "完了" && "3000年12月31日 23時59分"
       end
     end
   end
