@@ -10,7 +10,7 @@
 <% end %>
 
 <div class="jumbotron">
-  <%= form_with(model: user, local: true) do |f| %>
+  <%= form_with(model: user, local: true, url: change_root) do |f| %>
     <div class="form-group">
       <%= f.label :name %>
       <%= f.text_field :name, class: "form-control" %>
@@ -31,6 +31,11 @@
       <%= f.text_field :password_confirmation, class: "form-control", placeholder: t("activerecord.placeholder.input_password_confirmation") %>
     </div>
 
-    <%= f.submit t('helpers.submit.user_create') %>
+    <% case action_name %>
+    <% when "new" %>
+      <%= f.submit t('helpers.submit.user_create') %>
+    <% when "edit" %>
+      <%= f.submit t('helpers.submit.user_edit') %>
+    <% end %>
   <% end %>
 </div>
