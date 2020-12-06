@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_12_05_162354) do
     t.datetime "deadline", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", default: 1
+    t.bigint "user_id"
     t.index ["deadline"], name: "index_tasks_on_deadline"
     t.index ["name"], name: "index_tasks_on_name"
     t.index ["priority"], name: "index_tasks_on_priority"
