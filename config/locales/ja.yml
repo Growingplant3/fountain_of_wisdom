@@ -167,6 +167,7 @@
         sort_importance: 優先順位の降順で並べ替える
         user_create: アカウントを新規作成する
         user_edit: アカウントを編集する
+        user_destroy: アカウントを削除する
         really?: 本当に削除してもよろしいですか？
       page_entries_info:
         one_page:
