@@ -23,12 +23,12 @@
 
     <div class="form-group">
       <%= f.label :password %>
-      <%= f.text_field :password, class: "form-control" %>
+      <%= f.text_field :password, class: "form-control", placeholder: t("errors.messages.need_password_format").slice(1..39) %>
     </div>
 
     <div class="form-group">
       <%= f.label :password_confirmation %>
-      <%= f.text_field :password_confirmation, class: "form-control" %>
+      <%= f.text_field :password_confirmation, class: "form-control", placeholder: t("activerecord.placeholder.input_password_confirmation") %>
     </div>
 
     <%= f.submit t('helpers.submit.user_create') %>
