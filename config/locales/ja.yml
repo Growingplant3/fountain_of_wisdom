@@ -144,6 +144,7 @@
         too_short: は%{count}文字以上で入力してください
         wrong_length: は%{count}文字で入力してください
         need_future_date: は未来の日時を入力してください
+        need_password_format: は半角英数字もしくは記号(@#$_!?)を使用し、8〜16文字で入力してください
         can_not_create_because_have_any_error: 個のエラーがあるため、保存できません。
       template:
         body: 次の項目を確認してください
