@@ -23,3 +23,5 @@ ja:
         search: 条件で絞り込む
       user:
         new: アカウント作成
+    placeholder:
+      input_password_confirmation: 確認のため、もう一度パスワードを入力してください
