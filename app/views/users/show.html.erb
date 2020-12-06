@@ -6,5 +6,5 @@
   <h4>メールアドレス：<%= @user.email %></h4>
   <br>
   <%#= link_to "プロフィールを編集する", edit_user_path(@user) %>
-  <%#= link_to "アカウントを削除する", user_path(@user), class: "btn btn-danger", method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } %>
+  <%= link_to "アカウントを削除する", user_path(@user), method: :delete, data: { confirm: t("helpers.submit.really?") } %>
 </div>
