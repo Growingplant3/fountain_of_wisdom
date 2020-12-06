@@ -1,5 +1,4 @@
-<h1><%#= t('activerecord.title.user.new') %></h1>
-<h1>ログイン</h1>
+<h1><%= t('activerecord.title.session.new') %></h1>
 <hr>
 
 <div class="jumbotron">
@@ -14,7 +13,6 @@
       <%= f.text_field :password, class: "form-control", placeholder: t("errors.messages.need_password_format").slice(1..39) %>
     </div>
 
-    <%= f.submit "ログインする" %>
-    <%#= f.submit t('helpers.submit.user_create') %>
+    <%= f.submit t('helpers.submit.session_create') %>
   <% end %>
 </div>
