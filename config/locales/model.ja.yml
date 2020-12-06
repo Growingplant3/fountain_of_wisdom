@@ -24,5 +24,6 @@ ja:
       user:
         new: アカウント作成
         show: アカウント情報確認
+        edit: アカウント情報編集
     placeholder:
       input_password_confirmation: 確認のため、もう一度パスワードを入力してください
