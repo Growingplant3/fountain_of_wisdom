@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   def new
     @user = User.new
   end
@@ -6,8 +6,8 @@ class UserController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "アカウントの作成に成功しました。"
-      redirect_to users.path
+      flash.now[:notice] = "アカウントの作成に成功しました。"
+      render :new
     else
       flash.now[:danger] = "アカウントの作成に失敗しました。"
       render :new
