@@ -165,6 +165,7 @@
         task_destroy: タスクを削除する
         sort_expired: 終了期限の降順で並べ替える
         sort_importance: 優先順位の降順で並べ替える
+        user_create: アカウントを新規作成する
         really?: 本当に削除してもよろしいですか？
       page_entries_info:
         one_page:

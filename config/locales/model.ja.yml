@@ -9,6 +9,11 @@ ja:
         priority: 優先順位
         situation: 進行状況
         deadline: 終了期限
+      user:
+        name: アカウント名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
     title:
       task:
         index: タスク一覧
@@ -16,3 +21,5 @@ ja:
         show: タスクの詳細
         edit: タスクの編集
         search: 条件で絞り込む
+      user:
+        new: アカウント作成
