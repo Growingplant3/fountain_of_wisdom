@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show destroy]
+  before_action :set_user, only: %i[show edit destroy]
 
   def new
     @user = User.new
@@ -17,6 +17,9 @@ class UsersController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
   end
 
   def destroy
