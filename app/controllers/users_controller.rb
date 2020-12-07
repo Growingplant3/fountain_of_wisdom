@@ -9,7 +9,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash.now[:notice] = "アカウントの作成に成功しました。"
+      session[:user_id] = @user.id
+      flash[:notice] = "アカウントを作成後、ログインしました。"
       redirect_to user_path(@user)
     else
       flash.now[:danger] = "アカウントの作成に失敗しました。"
