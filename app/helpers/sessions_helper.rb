@@ -15,4 +15,8 @@ module SessionsHelper
       redirect_to new_session_path
     end
   end
+
+  def logged_in_user_can_not_log_in
+    redirect_back(fallback_location: tasks_path) if session[:user_id]
+  end
 end
