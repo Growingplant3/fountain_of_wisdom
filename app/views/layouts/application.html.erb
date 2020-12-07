@@ -21,11 +21,11 @@
       <div class="container">
         <ul class="nav nav-tabs">
           <% if logged_in? %>
-            <li><%= link_to "ユーザー情報確認", user_path(current_user) %></li>
-            <li><%= link_to "ログアウトする?", session_path(current_user), method: :delete %></li>
+            <li><%= link_to t("activerecord.title.user.show"), user_path(current_user) %></li>
+            <li><%= link_to t("activerecord.title.session.destroy"), session_path(current_user), method: :delete %></li>
           <% else %>
-            <li><%= link_to "アカウントを作成する", new_user_path %></li>
-            <li><%= link_to "ログインする", new_session_path %></li>
+            <li><%= link_to t("activerecord.title.user.create"), new_user_path %></li>
+            <li><%= link_to t("activerecord.title.session.new"), new_session_path %></li>
           <% end %>
         </ul>
       </div>
