@@ -25,7 +25,9 @@ ja:
         new: アカウント作成
         show: アカウント情報確認
         edit: アカウント情報編集
+        create: アカウントを作成する
       session:
         new: ログインする
+        destroy: ログアウトする
     placeholder:
       input_password_confirmation: 確認のため、もう一度パスワードを入力してください
