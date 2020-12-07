@@ -160,7 +160,7 @@
         update: 更新する
         search: 検索する
         task_create: タスクを新規作成する
-        task_index: タスク一覧に戻る
+        task_index: タスク一覧へ移動
         task_edit: タスクを編集する
         task_destroy: タスクを削除する
         sort_expired: 終了期限の降順で並べ替える
