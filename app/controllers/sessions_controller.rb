@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :logged_in_user_can_not_log_in, only: [:new]
+
   def new
   end
 
