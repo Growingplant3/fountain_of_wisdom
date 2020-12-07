@@ -5,6 +5,8 @@
   <h4><%= t('activerecord.attributes.user.name') %>：<%= @user.name %></h4>
   <h4><%= t('activerecord.attributes.user.email') %>：<%= @user.email %></h4>
   <br>
+  <%= link_to t("helpers.submit.task_index"), tasks_path %>
+  <br>
   <%= link_to t('helpers.submit.user_edit'), edit_user_path(@user) %>
   <br>
   <%= link_to t('helpers.submit.user_destroy'), user_path(@user), method: :delete, data: { confirm: t("helpers.submit.really?") } %>
