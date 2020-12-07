@@ -9,7 +9,13 @@ module SessionsHelper
 
   def sign_in_check
     if logged_in?
-      return
+      case action_name
+      when "show","edit","update","destroy"
+        if session[:user_id] != current_user.id
+          flash[:danger] = "他人のデータを扱うことはできません"
+          redirect_to tasks_path
+        end
+      end
     else
       flash[:danger] = "ログインする必要があります"
       redirect_to new_session_path
