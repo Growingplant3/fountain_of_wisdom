@@ -4,9 +4,9 @@ class TasksController < ApplicationController
 
   def index
     if params[:sort_expired] || params[:sort_importance]
-      @tasks = Task.all.order(sort_type(params))
+      @tasks = current_user.tasks.order(sort_type(params))
     else
-      @tasks = Task.all.order(created_at: "desc")
+      @tasks = current_user.tasks.order(created_at: "desc")
     end
     if params[:task]
       @tasks = @tasks.ambiguous_name(params[:task][:name]) unless params[:task][:name].blank?
