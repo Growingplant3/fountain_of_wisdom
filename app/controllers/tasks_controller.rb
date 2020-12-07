@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :sign_in_check
   before_action :set_task, only: %i[show edit update destroy]
 
   def index
