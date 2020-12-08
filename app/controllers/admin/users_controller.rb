@@ -1,5 +1,7 @@
 class Admin::UsersController < ApplicationController
+  include SessionsHelper
   before_action :set_user, only: %i[show edit update destroy]
+  before_action :check_admin_params
 
   def index
     @users = User.preload(:tasks).all
@@ -49,5 +51,12 @@ class Admin::UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def check_admin_params
+    if current_user.admin != true
+      flash[:danger] = "管理者権限がありません。"
+      redirect_back(fallback_location: root_path)
+    end
   end
 end
