@@ -30,6 +30,7 @@ ja:
       admin:
         index: 管理者画面：ユーザー一覧
         new: 管理者画面：ユーザー新規登録
+        edit: 管理者画面：アカウント情報編集
       session:
         new: ログインする
         destroy: ログアウトする
