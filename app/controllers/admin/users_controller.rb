@@ -54,9 +54,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def check_admin_params
-    if current_user.admin != true
-      flash[:danger] = "管理者権限がありません。"
-      redirect_back(fallback_location: root_path)
-    end
+    return if current_user.admin == true
+    flash[:danger] = "管理者権限がありません。"
+    redirect_to tasks_path
   end
 end
