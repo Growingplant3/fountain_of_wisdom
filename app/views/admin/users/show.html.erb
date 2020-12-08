@@ -6,4 +6,21 @@
 <div class="jumbotron">
   <h4><%= t('activerecord.attributes.user.name') %>：<%= @user.name %></h4>
   <h4><%= t('activerecord.attributes.user.email') %>：<%= @user.email %></h4>
+  <br>
+  <% if @user.tasks.empty? %>
+    <p>登録されているタスクは何もありません。</p>
+  <% else %>
+      <p>
+        <table>
+          <tr>
+            <th>タスク名</th>
+          </tr>
+          <% @user.tasks.each do |task| %>
+            <tr>
+              <th><%= task.name %></th>
+            </tr>
+          <% end %>
+        </table>
+      </p>
+  <% end %>
 </div>
