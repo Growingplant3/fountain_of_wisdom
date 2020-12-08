@@ -22,6 +22,7 @@ ja:
         show: タスクの詳細
         edit: タスクの編集
         search: 条件で絞り込む
+        instance_empty: 登録されているタスクは何もありません。
       user:
         new: アカウント作成
         show: アカウント情報確認
