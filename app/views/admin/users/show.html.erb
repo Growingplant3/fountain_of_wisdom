@@ -1,3 +1,9 @@
-<h1>admin/users/showだよ</h1>
+<h1><%= t("activerecord.title.admin.show") %></h1>
+<hr>
 
 <%= link_to t("helpers.submit.admin_user_index"), admin_users_path %>
+
+<div class="jumbotron">
+  <h4><%= t('activerecord.attributes.user.name') %>：<%= @user.name %></h4>
+  <h4><%= t('activerecord.attributes.user.email') %>：<%= @user.email %></h4>
+</div>
