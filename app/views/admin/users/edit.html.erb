@@ -1,6 +1,8 @@
 <h1><%= t("activerecord.title.admin.edit") %></h1>
 <hr>
 
+<%= link_to t("helpers.submit.admin_user_index"), admin_users_path %>
+
 <% if @user.errors.any? %>
   <div class="alert alert-danger" role="alert">
     <h2><%= pluralize(@user.errors.count, t('errors.messages.can_not_create_because_have_any_error')) %></h2>
