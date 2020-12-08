@@ -6,6 +6,7 @@
 <div class="jumbotron">
   <h4><%= t('activerecord.attributes.user.name') %>：<%= @user.name %></h4>
   <h4><%= t('activerecord.attributes.user.email') %>：<%= @user.email %></h4>
+  <h4><%= t('activerecord.attributes.user.admin') %>：<%= @user.admin_i18n %></h4>
   <br>
   <% if @user.tasks.empty? %>
     <p><%= t("activerecord.title.task.instance_empty") %></p>
