@@ -38,7 +38,7 @@
 
     <div class="form-group">
       <%= f.label :admin %>
-      <%= f.check_box :admin, checked_value: true, unchecked_value: false, class: "checkbox" %>
+      <%= f.check_box :admin, { class: "checkbox" }, :admin, :not_admin %>
     </div>
 
     <%= f.submit t('helpers.submit.user_edit') %>
