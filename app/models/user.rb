@@ -16,4 +16,9 @@ class User < ApplicationRecord
     presence: true,
     length: { in: 8..16 },
     format: { with: /[a-z\d@#$_!?]{8,16}/, message: I18n.t("errors.messages.need_password_format") }
+
+  enum admin: {
+    not_admin: false,
+    admin: true
+  } 
 end
