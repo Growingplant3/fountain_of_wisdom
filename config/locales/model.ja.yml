@@ -15,6 +15,7 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: 確認用パスワード
+        admin: 管理者権限の有無
     title:
       task:
         index: タスク一覧
