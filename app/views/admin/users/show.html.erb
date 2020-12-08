@@ -8,12 +8,12 @@
   <h4><%= t('activerecord.attributes.user.email') %>：<%= @user.email %></h4>
   <br>
   <% if @user.tasks.empty? %>
-    <p>登録されているタスクは何もありません。</p>
+    <p><%= t("activerecord.title.task.instance_empty") %></p>
   <% else %>
       <p>
         <table>
           <tr>
-            <th>タスク名</th>
+            <th><%= t("activerecord.attributes.task.name") %></th>
           </tr>
           <% @user.tasks.each do |task| %>
             <tr>
