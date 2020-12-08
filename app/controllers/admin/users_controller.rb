@@ -12,7 +12,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash.now[:notice] = "アカウントの作成に成功しました。"
+      flash[:notice] = "アカウントの作成に成功しました。"
       redirect_to admin_user_path(@user)
     else
       flash.now[:danger] = "アカウントの作成に失敗しました。"
