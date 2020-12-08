@@ -9,6 +9,7 @@ ja:
         priority: 優先順位
         situation: 進行状況
         deadline: 終了期限
+        count: タスク数
       user:
         name: アカウント名
         email: メールアドレス
@@ -26,6 +27,9 @@ ja:
         show: アカウント情報確認
         edit: アカウント情報編集
         create: アカウントを作成する
+      admin:
+        index: 管理者画面：ユーザー一覧
+        new: 管理者画面：ユーザー新規登録
       session:
         new: ログインする
         destroy: ログアウトする
