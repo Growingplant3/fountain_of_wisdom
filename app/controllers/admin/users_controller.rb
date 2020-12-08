@@ -46,7 +46,7 @@ class Admin::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
   end
 
   def set_user
@@ -54,7 +54,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def check_admin_params
-    return if current_user.admin == true
+    return if current_user.admin == "admin"
     flash[:danger] = "管理者権限がありません。"
     redirect_to tasks_path
   end
