@@ -36,11 +36,11 @@
       <%= f.text_field :password_confirmation, class: "form-control", placeholder: t("activerecord.placeholder.input_password_confirmation") %>
     </div>
 
-    <% case action_name %>
-    <% when "new" %>
-      <%= f.submit t('helpers.submit.user_create') %>
-    <% when "edit","update" %>
-      <%= f.submit t('helpers.submit.user_edit') %>
-    <% end %>
+    <div class="form-group">
+      <%= f.label :admin %>
+      <%= f.check_box :admin, checked_value: true, unchecked_value: false, class: "checkbox" %>
+    </div>
+
+    <%= f.submit t('helpers.submit.user_edit') %>
   <% end %>
 </div>
