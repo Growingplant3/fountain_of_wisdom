@@ -159,6 +159,9 @@
         submit: 保存する
         update: 更新する
         search: 検索する
+        show: 詳細
+        edit: 編集
+        destroy: 削除
         task_create: タスクを新規作成する
         task_index: タスク一覧へ移動
         task_edit: タスクを編集する
