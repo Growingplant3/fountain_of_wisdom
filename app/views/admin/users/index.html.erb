@@ -21,9 +21,9 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.tasks.count %></td>
-        <td><%= link_to t("helpers.submit.show"), "#" %></td>
-        <td><%= link_to t("helpers.submit.edit"), "#" %></td>
-        <td><%= link_to t("helpers.submit.destroy"), "#" %></td>
+        <td><%= link_to t("helpers.submit.show"), admin_user_path(user) %></td>
+        <td><%= link_to t("helpers.submit.edit"), edit_admin_user_path(user) %></td>
+        <td><%= link_to t("helpers.submit.destroy"), admin_user_path(user), method: :delete, data: { confirm: t("helpers.submit.really?")} %></td>
       </tr>
     <% end %>
   </tbody>
