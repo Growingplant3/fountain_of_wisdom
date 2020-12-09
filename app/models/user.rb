@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  after_update :there_is_an_administrator
+  after_destroy :there_is_an_administrator
   has_many :tasks, dependent: :destroy
   has_secure_password
   before_validation { email.downcase! }
@@ -21,4 +23,12 @@ class User < ApplicationRecord
     not_admin: false,
     admin: true
   } 
+
+  private
+  def there_is_an_administrator
+    binding.pry
+    unless User.pluck(:admin).include?("admin")
+      raise ActiveRecord::Rollback
+    end
+  end
 end
