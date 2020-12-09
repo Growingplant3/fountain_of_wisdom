@@ -39,9 +39,13 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    flash[:danger] = "アカウントを削除しました。"
-    redirect_to admin_users_path
+    if @user.destroy
+      flash[:danger] = "アカウントを削除しました。"
+      redirect_to admin_users_path
+    else
+      flash[:danger] = "アカウントを削除できませんでした。"
+      redirect_to admin_users_path
+    end
   end
 
   private
