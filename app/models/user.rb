@@ -26,7 +26,6 @@ class User < ApplicationRecord
 
   private
   def there_is_an_administrator
-    binding.pry
     unless User.pluck(:admin).include?("admin")
       raise ActiveRecord::Rollback
     end
