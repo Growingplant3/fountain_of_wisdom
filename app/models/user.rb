@@ -30,5 +30,8 @@ class User < ApplicationRecord
     unless User.pluck(:admin).include?("admin")
       raise ActiveRecord::Rollback
     end
+    # if User.where(admin: true).length <= 1 && self.admin == "admin"
+    #   throw :abort
+    # end
   end
 end
