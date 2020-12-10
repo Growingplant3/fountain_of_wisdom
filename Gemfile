@@ -32,6 +32,7 @@ group :development, :test do
   # Test
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_bot_rails'
+  gem 'launchy', '~> 2.4', '>= 2.4.3'
 end
 
 group :test do
