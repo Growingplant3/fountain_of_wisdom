@@ -2,6 +2,7 @@ require 'rails_helper'
 RSpec.describe 'ユーザー管理機能', type: :system do
   let(:general_user) { FactoryBot.create(:general_user) }
   let(:another_user) { FactoryBot.create(:another_user) }
+  let(:admin_user) { FactoryBot.create(:admin_user) }
   describe 'サインアップ機能' do
     it '必要項目を満たせばサインアップできる' do
       visit new_user_path
@@ -77,18 +78,39 @@ RSpec.describe 'ユーザー管理機能', type: :system do
       find("#create_tag").click
     }
     it 'アカウントを編集するボタンを押せばアカウントを編集できる' do
+      admin_user
       click_on "アカウントを編集する"
       fill_in "user_name", with: ""
       fill_in "user_name", with: "edit_user_name"
       fill_in "user_email", with: ""
       fill_in "user_email", with: "edit_user@gmail.com"
-      # fill_in "user[password]", with: "password"
-      # fill_in "user[password_confirmation]", with: "password"
-      save_and_open_page
+      fill_in "user_password", with: "password"
+      fill_in "user_password_confirmation", with: "password"
       click_on "アカウントを編集する"
-      save_and_open_page
       expect(page.text).to include "アカウントの編集に成功しました。"
     end
   end
   
+  # describe '管理者機能' do
+  #   it '管理ユーザは管理画面にアクセスできること' do
+  #     admin_user
+  #     visit new_session_path
+  #     fill_in "session_email", with: "admin@example.com"
+  #     fill_in "session_password", with: "password"
+  #   end
+
+  #   it '一般ユーザは管理画面にアクセスできないこと' do
+  #   end
+  #   it '管理ユーザはユーザの新規登録ができること' do
+  #   end
+
+  #   it '管理ユーザはユーザの詳細画面にアクセスできること' do
+  #   end
+
+  #   it '管理ユーザはユーザの編集画面からユーザを編集できること' do
+  #   end
+
+  #   it '管理ユーザはユーザの削除をできること' do
+  #   end
+  # end
 end
