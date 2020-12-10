@@ -24,6 +24,17 @@ RSpec.describe 'ユーザー管理機能', type: :system do
     end
   end
 
+  # describe 'ユーザー情報確認機能'do
+  #   it 'ログイン後にはアカウント情報確認ページに移行する' do
+  #     general_user
+  #     visit new_session_path
+  #     fill_in "session_email", with: "general@example.com"
+  #     fill_in "session_password", with: "password"
+  #     find("#create_tag").click
+  #     expect(page.text).to include "アカウント情報確認"
+  #   end
+  # end
+
   describe 'アカウント削除機能' do
     before {
       general_user
@@ -50,10 +61,17 @@ RSpec.describe 'ユーザー管理機能', type: :system do
     }
     it 'アカウントを編集するボタンを押せばアカウントを編集できる' do
       click_on "アカウントを編集する"
+      fill_in "user_name", with: ""
       fill_in "user_name", with: "edit_user_name"
-      fill_in "user_email", with: "edit@example.com"
-      fill_in "user_password", with: "editpassword"
-      fill_in "user_password_confirmation", with: "editpassword"
+      fill_in "user_email", with: ""
+      fill_in "user_email", with: "edit_user@gmail.com"
+      # fill_in "user[password]", with: "password"
+      # fill_in "user[password_confirmation]", with: "password"
+      save_and_open_page
+      click_on "アカウントを編集する"
+      save_and_open_page
+      expect(page.text).to include "アカウントの編集に成功しました。"
     end
   end
+
 end
