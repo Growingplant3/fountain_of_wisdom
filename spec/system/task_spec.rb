@@ -106,38 +106,38 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
 
-  #   context '条件検索をした場合' do
-  #     before {
-  #       task
-  #       FactoryBot.create(:task, name: "正しいデータ1", situation: 1)
-  #       FactoryBot.create(:task, name: "正しい旅行0", situation: 1)
-  #       FactoryBot.create(:task, name: "正しい旅行1", situation: 2)
-  #     }
-  #     subject {
-  #       click_on "検索する"
-  #       task_list = all('.task_row')
-  #       task_list.length
-  #     }
+    context '条件検索をした場合' do
+      before {
+        task
+        FactoryBot.create(:task, name: "正しいデータ1", situation: 1, user: general_user)
+        FactoryBot.create(:task, name: "正しい旅行0", situation: 1, user: general_user)
+        FactoryBot.create(:task, name: "正しい旅行1", situation: 2, user: general_user)
+      }
+      subject {
+        click_on "検索する"
+        task_list = all('.task_row')
+        task_list.length
+      }
 
-  #     it 'タスク名で検索ができる' do
-  #       visit tasks_path
-  #       fill_in "task_name", with: "正しいデータ0"
-  #       is_expected.to eq 1
-  #     end
+      it 'タスク名で検索ができる' do
+        visit tasks_path
+        fill_in "task_name", with: "正しいデータ0"
+        is_expected.to eq 1
+      end
 
-  #     it '進行状況で検索ができる' do
-  #       visit tasks_path
-  #       find("option[value='finished']").select_option
-  #       is_expected.to eq 1
-  #     end
+      it '進行状況で検索ができる' do
+        visit tasks_path
+        find("option[value='finished']").select_option
+        is_expected.to eq 1
+      end
 
-  #     it 'タスク名と進行状況で検索ができる' do
-  #       visit tasks_path
-  #       fill_in "task_name", with: "正しい旅行"
-  #       find("option[value='started']").select_option
-  #       is_expected.to eq 1
-  #     end
-  #   end
+      it 'タスク名と進行状況で検索ができる' do
+        visit tasks_path
+        fill_in "task_name", with: "正しい旅行"
+        find("option[value='started']").select_option
+        is_expected.to eq 1
+      end
+    end
   end
 
   # describe '詳細表示機能' do
