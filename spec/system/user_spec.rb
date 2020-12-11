@@ -160,7 +160,18 @@ RSpec.describe 'ユーザー管理機能', type: :system do
       expect(page.text).to include "管理者画面：アカウント情報確認" && "change_name" && "change@example.com" && ""
     end
 
-  #   it '管理ユーザはユーザの削除をできること' do
-  #   end
+    it '管理ユーザはユーザの削除をできること' do
+      general_user
+      admin_user
+      visit new_session_path
+      fill_in "session_email", with: "admin@example.com"
+      fill_in "session_password", with: "19!a@z?0"
+      find("#create_tag").click
+      visit admin_users_path
+      page.accept_confirm do
+        click_on "削除", match: :first
+      end
+      expect(page.text).not_to include "general_user" && "general@example.com" && "無し"
+    end
   end
 end
