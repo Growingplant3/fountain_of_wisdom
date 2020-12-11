@@ -91,13 +91,16 @@ RSpec.describe 'ユーザー管理機能', type: :system do
     end
   end
   
-  # describe '管理者機能' do
-  #   it '管理ユーザは管理画面にアクセスできること' do
-  #     admin_user
-  #     visit new_session_path
-  #     fill_in "session_email", with: "admin@example.com"
-  #     fill_in "session_password", with: "password"
-  #   end
+  describe '管理者機能' do
+    it '管理ユーザは管理画面にアクセスできること' do
+      admin_user
+      visit new_session_path
+      fill_in "session_email", with: "admin@example.com"
+      fill_in "session_password", with: "19!a@z?0"
+      find("#create_tag").click
+      visit admin_users_path
+      expect(page.text).not_to include "管理者権限がありません。"
+    end
 
   #   it '一般ユーザは管理画面にアクセスできないこと' do
   #   end
@@ -112,5 +115,5 @@ RSpec.describe 'ユーザー管理機能', type: :system do
 
   #   it '管理ユーザはユーザの削除をできること' do
   #   end
-  # end
+  end
 end
