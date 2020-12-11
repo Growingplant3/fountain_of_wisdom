@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
   before_action :sign_in_check, only: %i[show edit update destroy]
+  before_action :logged_in_user_can_not_log_in, only: [:new]
 
   def new
     @user = User.new
