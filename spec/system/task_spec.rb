@@ -24,20 +24,27 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
   end
 
-  # describe '一覧表示機能' do
-  #   context '一覧画面に遷移した場合' do
-  #     it '作成済みのタスク一覧が表示される' do
-  #       task
-  #       FactoryBot.create(:task, name: "正しいデータ1")
-  #       FactoryBot.create(:task, name: "正しいデータ2")
-  #       visit tasks_path
-  #       task_list = all('.task_row')
-  #       expect(page).to have_content "タスク一覧"
-  #       expect(task_list[0].text).to include "正しいデータ2"
-  #       expect(task_list[1].text).to include "正しいデータ1"
-  #       expect(task_list[2].text).to include "正しいデータ0"
-  #     end
-  #   end
+  describe '一覧表示機能' do
+    before {
+      general_user
+      visit new_session_path
+      fill_in "session_email", with: "general@example.com"
+      fill_in "session_password", with: "password"
+      find("#create_tag").click
+    }
+    context '一覧画面に遷移した場合' do
+      it '作成済みのタスク一覧が表示される' do
+        task
+        FactoryBot.create(:task, name: "正しいデータ1", user_id: general_user.id )
+        FactoryBot.create(:task, name: "正しいデータ2", user_id: general_user.id )
+        visit tasks_path
+        task_list = all('.task_row')
+        expect(page).to have_content "タスク一覧"
+        expect(task_list[0].text).to include "正しいデータ2"
+        expect(task_list[1].text).to include "正しいデータ1"
+        expect(task_list[2].text).to include "正しいデータ0"
+      end
+    end
 
   #   context 'タスクが作成日時の降順に並んでいる場合' do
   #     before {
@@ -130,7 +137,7 @@ RSpec.describe 'タスク管理機能', type: :system do
   #       is_expected.to eq 1
   #     end
   #   end
-  # end
+  end
 
   # describe '詳細表示機能' do
   #   context '任意のタスク詳細画面に遷移した場合' do
