@@ -128,14 +128,17 @@ RSpec.describe 'ユーザー管理機能', type: :system do
       expect(page.text).to include "アカウントの作成に成功しました。"
     end
 
-    # it '管理ユーザはユーザの詳細画面にアクセスできること' do
-      # admin_user
-      # visit new_session_path
-      # fill_in "session_email", with: "admin@example.com"
-      # fill_in "session_password", with: "19!a@z?0"
-      # find("#create_tag").click
-      # visit admin_users_path
-    # end
+    it '管理ユーザはユーザの詳細画面にアクセスできること' do
+      general_user
+      admin_user
+      visit new_session_path
+      fill_in "session_email", with: "admin@example.com"
+      fill_in "session_password", with: "19!a@z?0"
+      find("#create_tag").click
+      visit admin_users_path
+      click_on "詳細", match: :first
+      expect(page.text).to include "管理者画面：アカウント情報確認" && "general_user" && "general@example.com" && "無し"
+    end
 
   #   it '管理ユーザはユーザの編集画面からユーザを編集できること' do
   #   end
