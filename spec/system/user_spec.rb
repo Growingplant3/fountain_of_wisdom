@@ -140,8 +140,25 @@ RSpec.describe 'ユーザー管理機能', type: :system do
       expect(page.text).to include "管理者画面：アカウント情報確認" && "general_user" && "general@example.com" && "無し"
     end
 
-  #   it '管理ユーザはユーザの編集画面からユーザを編集できること' do
-  #   end
+    it '管理ユーザはユーザの編集画面からユーザを編集できること' do
+      general_user
+      admin_user
+      visit new_session_path
+      fill_in "session_email", with: "admin@example.com"
+      fill_in "session_password", with: "19!a@z?0"
+      find("#create_tag").click
+      visit admin_users_path
+      click_on "編集", match: :first
+      fill_in "user_name", with: ""
+      fill_in "user_name", with: "change_name"
+      fill_in "user_email", with: ""
+      fill_in "user_email", with: "change@example.com"
+      fill_in "user_password", with: "change@pass"
+      fill_in "user_password_confirmation", with: "change@pass"
+      check "user_admin"
+      click_on "アカウントを編集する"
+      expect(page.text).to include "管理者画面：アカウント情報確認" && "change_name" && "change@example.com" && ""
+    end
 
   #   it '管理ユーザはユーザの削除をできること' do
   #   end
