@@ -112,8 +112,19 @@ RSpec.describe 'ユーザー管理機能', type: :system do
       expect(page.text).to include "管理者権限がありません。"
     end
 
-  #   it '管理ユーザはユーザの新規登録ができること' do
-  #   end
+    it '管理ユーザはユーザの新規登録ができること' do
+      admin_user
+      visit new_session_path
+      fill_in "session_email", with: "admin@example.com"
+      fill_in "session_password", with: "19!a@z?0"
+      find("#create_tag").click
+      visit admin_users_path
+      click_on "ユーザー新規登録"
+      fill_in "user_name", with: "sample_user"
+      fill_in "user_email", with: "sample_user@gmail.com"
+      fill_in "user_password", with: "samplepass"
+      fill_in "user_password_confirmation", with: "samplepass"
+    end
 
   #   it '管理ユーザはユーザの詳細画面にアクセスできること' do
   #   end
