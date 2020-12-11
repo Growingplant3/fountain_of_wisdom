@@ -85,26 +85,26 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
 
-  #   context 'タスクが優先順位の降順に並んでいる場合' do
-  #     before {
-  #       FactoryBot.create(:task, name: "正しいデータ2", priority: 1)
-  #       FactoryBot.create(:task, name: "正しいデータ3", priority: 2)
-  #       task
-  #       FactoryBot.create(:task, name: "正しいデータ1", priority: 1)
-  #     }
+    context 'タスクが優先順位の降順に並んでいる場合' do
+      before {
+        FactoryBot.create(:task, name: "正しいデータ2", priority: 1, user: general_user)
+        FactoryBot.create(:task, name: "正しいデータ3", priority: 2, user: general_user)
+        task
+        FactoryBot.create(:task, name: "正しいデータ1", priority: 1, user: general_user)
+      }
 
-  #     it '優先度の高いタスクが一番上に表示される' do
-  #       visit tasks_path(sort_importance: "true")
-  #       task_list = all('.task_row')
-  #       expect(task_list.first.text).to include "高"
-  #     end
+      it '優先度の高いタスクが一番上に表示される' do
+        visit tasks_path(sort_importance: "true")
+        task_list = all('.task_row')
+        expect(task_list.first.text).to include "高"
+      end
 
-  #     it '優先度の低いタスクが一番下に表示される' do
-  #       visit tasks_path(sort_importance: "true")
-  #       task_list = all('.task_row')
-  #       expect(task_list.last.text).to include "低"
-  #     end
-  #   end
+      it '優先度の低いタスクが一番下に表示される' do
+        visit tasks_path(sort_importance: "true")
+        task_list = all('.task_row')
+        expect(task_list.last.text).to include "低"
+      end
+    end
 
   #   context '条件検索をした場合' do
   #     before {
