@@ -102,8 +102,16 @@ RSpec.describe 'ユーザー管理機能', type: :system do
       expect(page.text).not_to include "管理者権限がありません。"
     end
 
-  #   it '一般ユーザは管理画面にアクセスできないこと' do
-  #   end
+    it '一般ユーザは管理画面にアクセスできないこと' do
+      general_user
+      visit new_session_path
+      fill_in "session_email", with: "general@example.com"
+      fill_in "session_password", with: "password"
+      find("#create_tag").click
+      visit admin_users_path
+      expect(page.text).to include "管理者権限がありません。"
+    end
+
   #   it '管理ユーザはユーザの新規登録ができること' do
   #   end
 
