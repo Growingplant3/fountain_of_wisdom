@@ -1,0 +1,27 @@
+<h1><%= t("activerecord.title.admin.show") %></h1>
+<hr>
+
+<%= link_to t("helpers.submit.admin_user_index"), admin_users_path %>
+
+<div class="jumbotron">
+  <h4><%= t('activerecord.attributes.user.name') %>：<%= @user.name %></h4>
+  <h4><%= t('activerecord.attributes.user.email') %>：<%= @user.email %></h4>
+  <h4><%= t('activerecord.attributes.user.admin') %>：<%= @user.admin_i18n %></h4>
+  <br>
+  <% if @user.tasks.empty? %>
+    <p><%= t("activerecord.title.task.instance_empty") %></p>
+  <% else %>
+      <p>
+        <table>
+          <tr>
+            <th><%= t("activerecord.attributes.task.name") %></th>
+          </tr>
+          <% @user.tasks.each do |task| %>
+            <tr>
+              <th><%= task.name %></th>
+            </tr>
+          <% end %>
+        </table>
+      </p>
+  <% end %>
+</div>

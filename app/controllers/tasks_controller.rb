@@ -1,11 +1,12 @@
 class TasksController < ApplicationController
+  before_action :sign_in_check
   before_action :set_task, only: %i[show edit update destroy]
 
   def index
     if params[:sort_expired] || params[:sort_importance]
-      @tasks = Task.all.order(sort_type(params))
+      @tasks = current_user.tasks.order(sort_type(params))
     else
-      @tasks = Task.all.order(created_at: "desc")
+      @tasks = current_user.tasks.order(created_at: "desc")
     end
     if params[:task]
       @tasks = @tasks.ambiguous_name(params[:task][:name]) unless params[:task][:name].blank?
@@ -15,11 +16,11 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = current_user.tasks.new
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.new(task_params)
     if @task.save
       flash[:notice] = "タスクの登録に成功しました。"
       redirect_to task_path(@task)

@@ -13,8 +13,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+# Password
+gem 'bcrypt'
 # Internationalization
 gem 'enum_help'
 # pagination
@@ -32,6 +32,7 @@ group :development, :test do
   # Test
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_bot_rails'
+  gem 'launchy', '~> 2.4', '>= 2.4.3'
 end
 
 group :test do

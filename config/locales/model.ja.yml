@@ -9,6 +9,13 @@ ja:
         priority: 優先順位
         situation: 進行状況
         deadline: 終了期限
+        count: タスク数
+      user:
+        name: アカウント名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        admin: 管理者権限の有無
     title:
       task:
         index: タスク一覧
@@ -16,3 +23,19 @@ ja:
         show: タスクの詳細
         edit: タスクの編集
         search: 条件で絞り込む
+        instance_empty: 登録されているタスクは何もありません。
+      user:
+        new: アカウント作成
+        show: アカウント情報確認
+        edit: アカウント情報編集
+        create: アカウントを作成する
+      admin:
+        index: 管理者画面：アカウント一覧
+        new: 管理者画面：アカウント新規登録
+        edit: 管理者画面：アカウント情報編集
+        show: 管理者画面：アカウント情報確認
+      session:
+        new: ログインする
+        destroy: ログアウトする
+    placeholder:
+      input_password_confirmation: 確認のため、もう一度パスワードを入力してください

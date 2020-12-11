@@ -1,7 +1,15 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
-  let(:task) { FactoryBot.create(:task) }
+  let(:general_user) { FactoryBot.create(:general_user) }
+  let(:task) { FactoryBot.create(:task, user: general_user) }
   describe '新規作成機能' do
+    before {
+      general_user
+      visit new_session_path
+      fill_in "session_email", with: "general@example.com"
+      fill_in "session_password", with: "password"
+      find("#create_tag").click
+    }
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
         visit new_task_path
@@ -17,11 +25,18 @@ RSpec.describe 'タスク管理機能', type: :system do
   end
 
   describe '一覧表示機能' do
+    before {
+      general_user
+      visit new_session_path
+      fill_in "session_email", with: "general@example.com"
+      fill_in "session_password", with: "password"
+      find("#create_tag").click
+    }
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
         task
-        FactoryBot.create(:task, name: "正しいデータ1")
-        FactoryBot.create(:task, name: "正しいデータ2")
+        FactoryBot.create(:task, name: "正しいデータ1", user_id: general_user.id )
+        FactoryBot.create(:task, name: "正しいデータ2", user_id: general_user.id )
         visit tasks_path
         task_list = all('.task_row')
         expect(page).to have_content "タスク一覧"
@@ -34,14 +49,15 @@ RSpec.describe 'タスク管理機能', type: :system do
     context 'タスクが作成日時の降順に並んでいる場合' do
       before {
         task
-        FactoryBot.create(:task, name: "正しいデータ1")
-        FactoryBot.create(:task, name: "正しいデータ2")
+        FactoryBot.create(:task, name: "正しいデータ1", user_id: general_user.id )
+        FactoryBot.create(:task, name: "正しいデータ2", user_id: general_user.id )
       }
       it '新しいタスクが一番上に表示される' do
         visit tasks_path
         task_list = all('.task_row')
         expect(task_list.first.text).to include "正しいデータ2"
       end
+
       it '古いタスクが一番下に表示される' do
         visit tasks_path
         task_list = all('.task_row')
@@ -51,10 +67,10 @@ RSpec.describe 'タスク管理機能', type: :system do
 
     context 'タスクが終了期限の降順に並んでいる場合' do
       before {
-        FactoryBot.create(:task, name: "正しいデータ2", deadline: "(3000/01/03).to_datetime")
-        FactoryBot.create(:task, name: "正しいデータ3", deadline: "(3000/01/04).to_datetime")
+        FactoryBot.create(:task, name: "正しいデータ2", deadline: "(3000/01/03).to_datetime", user: general_user)
+        FactoryBot.create(:task, name: "正しいデータ3", deadline: "(3000/01/04).to_datetime", user: general_user)
         task
-        FactoryBot.create(:task, name: "正しいデータ1", deadline: "(3000/01/02).to_datetime")
+        FactoryBot.create(:task, name: "正しいデータ1", deadline: "(3000/01/02).to_datetime", user: general_user)
       }
       it '期限の長いタスクが一番上に表示される' do
         visit tasks_path(sort_expired: "true")
@@ -71,10 +87,10 @@ RSpec.describe 'タスク管理機能', type: :system do
 
     context 'タスクが優先順位の降順に並んでいる場合' do
       before {
-        FactoryBot.create(:task, name: "正しいデータ2", priority: 1)
-        FactoryBot.create(:task, name: "正しいデータ3", priority: 2)
+        FactoryBot.create(:task, name: "正しいデータ2", priority: 1, user: general_user)
+        FactoryBot.create(:task, name: "正しいデータ3", priority: 2, user: general_user)
         task
-        FactoryBot.create(:task, name: "正しいデータ1", priority: 1)
+        FactoryBot.create(:task, name: "正しいデータ1", priority: 1, user: general_user)
       }
 
       it '優先度の高いタスクが一番上に表示される' do
@@ -93,9 +109,9 @@ RSpec.describe 'タスク管理機能', type: :system do
     context '条件検索をした場合' do
       before {
         task
-        FactoryBot.create(:task, name: "正しいデータ1", situation: 1)
-        FactoryBot.create(:task, name: "正しい旅行0", situation: 1)
-        FactoryBot.create(:task, name: "正しい旅行1", situation: 2)
+        FactoryBot.create(:task, name: "正しいデータ1", situation: 1, user: general_user)
+        FactoryBot.create(:task, name: "正しい旅行0", situation: 1, user: general_user)
+        FactoryBot.create(:task, name: "正しい旅行1", situation: 2, user: general_user)
       }
       subject {
         click_on "検索する"
@@ -125,6 +141,13 @@ RSpec.describe 'タスク管理機能', type: :system do
   end
 
   describe '詳細表示機能' do
+    before {
+      general_user
+      visit new_session_path
+      fill_in "session_email", with: "general@example.com"
+      fill_in "session_password", with: "password"
+      find("#create_tag").click
+    }
     context '任意のタスク詳細画面に遷移した場合' do
       it '該当タスクの内容が表示される' do
         visit task_path(task)

@@ -1,0 +1,18 @@
+<h1><%= t('activerecord.title.session.new') %></h1>
+<hr>
+
+<div class="jumbotron">
+  <%= form_with(scope: :session, local: true, url: sessions_path) do |f| %>
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.text_field :email, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.text_field :password, class: "form-control", placeholder: t("errors.messages.need_password_format").slice(1..39) %>
+    </div>
+
+    <%= f.submit t('helpers.submit.session_create'), id: "create_tag" %>
+  <% end %>
+</div>

@@ -1,0 +1,46 @@
+<h1><%= t("activerecord.title.admin.edit") %></h1>
+<hr>
+
+<%= link_to t("helpers.submit.admin_user_index"), admin_users_path %>
+
+<% if @user.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <h2><%= pluralize(@user.errors.count, t('errors.messages.can_not_create_because_have_any_error')) %></h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="jumbotron">
+  <%= form_with(model: [:admin, @user], local: true, url: change_root) do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.text_field :email, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.text_field :password, class: "form-control", placeholder: t("errors.messages.need_password_format").slice(1..39) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation %>
+      <%= f.text_field :password_confirmation, class: "form-control", placeholder: t("activerecord.placeholder.input_password_confirmation") %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :admin %>
+      <%= f.check_box :admin, { class: "checkbox" }, :admin, :not_admin %>
+    </div>
+
+    <%= f.submit t('helpers.submit.user_edit') %>
+  <% end %>
+</div>

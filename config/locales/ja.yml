@@ -10,6 +10,10 @@
           stand_by: 未着手
           started: 着手
           finished: 完了
+      user:
+        admin:
+          not_admin: 無し
+          admin: 有り
     activerecord:
       errors:
         messages:
@@ -144,6 +148,7 @@
         too_short: は%{count}文字以上で入力してください
         wrong_length: は%{count}文字で入力してください
         need_future_date: は未来の日時を入力してください
+        need_password_format: は半角英数字もしくは記号(@!?)を使用し、8〜16文字で入力してください
         can_not_create_because_have_any_error: 個のエラーがあるため、保存できません。
       template:
         body: 次の項目を確認してください
@@ -158,12 +163,21 @@
         submit: 保存する
         update: 更新する
         search: 検索する
+        show: 詳細
+        edit: 編集
+        destroy: 削除
         task_create: タスクを新規作成する
-        task_index: タスク一覧に戻る
+        task_index: タスク一覧へ移動
         task_edit: タスクを編集する
         task_destroy: タスクを削除する
         sort_expired: 終了期限の降順で並べ替える
         sort_importance: 優先順位の降順で並べ替える
+        user_create: アカウントを新規作成する
+        user_edit: アカウントを編集する
+        user_destroy: アカウントを削除する
+        session_create: ログインする
+        admin_user_new: ユーザー新規登録
+        admin_user_index: 管理者画面：ユーザー一覧に戻る
         really?: 本当に削除してもよろしいですか？
       page_entries_info:
         one_page:
