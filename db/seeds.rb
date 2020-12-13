@@ -1,7 +1,7 @@
 first_admin_user = User.create(name: "master", email: "master@example.com", password: "password", password_confirmation: "password", admin: "admin")
 second_admin_user = User.create(name: "admin", email: "admin@example.com", password: "password", password_confirmation: "password", admin: "admin")
-first_general_user = User.create(name: "general", email: "general@example.comt", password: "password", password_confirmation: "password", admin: "not_admin")
-second_general_user = User.create(name: "ordinary people", email: "ordinary_people@example.comt", password: "password", password_confirmation: "password", admin: "not_admin")
+first_general_user = User.create(name: "general", email: "general@example.com", password: "password", password_confirmation: "password", admin: "not_admin")
+second_general_user = User.create(name: "ordinary people", email: "ordinary_people@example.com", password: "password", password_confirmation: "password", admin: "not_admin")
 
 # 1508件のシードデータが少なすぎる場合にはこちらを使ってください。
 # alphabet_array1 = ("A".."z").to_a
@@ -46,5 +46,5 @@ end
 label_names = ["遊び", "買い物", "旅行", "家族", "友達", "学校", "会社", "資格", "試験", "その他"]
 
 label_names.each do |label_name|
-  Label.create(name: label_name, user_id: Random.rand(3..4))
+  Label.create(name: label_name,user_id: 3)
 end
