@@ -46,7 +46,5 @@ end
 label_names = ["遊び", "買い物", "旅行", "家族", "友達", "学校", "会社", "資格", "試験", "その他"]
 
 label_names.each do |label_name|
-  name = label_name
-  user_id = Random.rand(3..4)
-  Label.create(name: name, user_id: user_id)
+  Label.create(name: label_name, user_id: Random.rand(3..4))
 end
