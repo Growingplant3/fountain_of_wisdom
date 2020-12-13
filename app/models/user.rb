@@ -2,6 +2,7 @@ class User < ApplicationRecord
   after_update :there_is_an_administrator
   after_destroy :there_is_an_administrator
   has_many :tasks, dependent: :destroy
+  has_many :labels, dependent: :destroy
   has_secure_password
   before_validation { email.downcase! }
 
