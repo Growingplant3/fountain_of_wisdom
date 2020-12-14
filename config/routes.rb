@@ -7,5 +7,4 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
   end
-  get '*path', controller: 'application', action: 'render_404'
 end
