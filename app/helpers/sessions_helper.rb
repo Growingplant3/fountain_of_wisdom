@@ -26,6 +26,11 @@ module SessionsHelper
             redirect_to tasks_path
           end
         end
+        when "labels"
+          unless current_user.labels.find_by(id: params[:id])
+            flash[:danger] = "他人のデータを扱うことはできません"
+            redirect_to labels_path
+        end
       end
     end
   end
