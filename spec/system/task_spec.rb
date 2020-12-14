@@ -2,6 +2,10 @@ require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
   let(:general_user) { FactoryBot.create(:general_user) }
   let(:task) { FactoryBot.create(:task, user: general_user) }
+  let(:another_task) { FactoryBot.create(:another_task, user: general_user) }
+  let(:label) { FactoryBot.create(:label, user: general_user) }
+  let(:common_label) { FactoryBot.create(:common_label, user: general_user) }
+  let(:label_task) { FactroyBot.create(:label_task) }
   describe '新規作成機能' do
     before {
       general_user
@@ -12,14 +16,18 @@ RSpec.describe 'タスク管理機能', type: :system do
     }
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
+        label
+        common_label
         visit new_task_path
         fill_in "task_name", with: "正しいタスク名"
         fill_in "task_detail", with: "正しいタスク詳細"
         find("option[value='high']").select_option
         find("option[value='finished']").select_option
         fill_in "task_deadline", with: "003000-12-31T23:59"
+        check "正しいラベル"
+        check "よくあるラベル"
         click_on "登録する"
-        expect(page.text).to include "正しいタスク名" && "正しいタスク詳細" && "高" && "完了" && "3000年12月31日 23時59分"
+        expect(page.text).to include "正しいタスク名" && "正しいタスク詳細" && "高" && "完了" && "3000年12月31日 23時59分" && "正しいラベル" && "よくあるラベル"
       end
     end
   end
@@ -112,6 +120,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         FactoryBot.create(:task, name: "正しいデータ1", situation: 1, user: general_user)
         FactoryBot.create(:task, name: "正しい旅行0", situation: 1, user: general_user)
         FactoryBot.create(:task, name: "正しい旅行1", situation: 2, user: general_user)
+        FactoryBot.create(:label_task, label: label, task: another_task)
       }
       subject {
         click_on "検索する"
@@ -128,6 +137,12 @@ RSpec.describe 'タスク管理機能', type: :system do
       it '進行状況で検索ができる' do
         visit tasks_path
         find("option[value='finished']").select_option
+        is_expected.to eq 1
+      end
+
+      it "ラベルで検索ができる" do
+        visit tasks_path
+        find("option[value='正しいラベル']").select_option
         is_expected.to eq 1
       end
 
