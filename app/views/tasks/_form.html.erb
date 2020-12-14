@@ -36,6 +36,14 @@
       <%= f.datetime_field :deadline, class: "form-control" %>
     </div>
 
+    <% if current_user.labels.present? %>
+      <h2>ラベルもつける</h2>
+      <%= f.fields_for :labels do |form| %>
+        <%= f.collection_check_boxes :label_ids, current_user.labels, :id, :name %>
+      <% end %>
+      <br>
+    <% end %>
+
     <% case action_name %>
     <% when "new","create" %>
       <%= f.submit t('helpers.submit.create') %>
