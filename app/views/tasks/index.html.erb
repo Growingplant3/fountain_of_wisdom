@@ -1,7 +1,7 @@
 <h1><%= t('activerecord.title.task.index') %></h1>
 <%= link_to t('helpers.submit.task_create'), new_task_path %>
 <br>
-<%= link_to "ラベルを新規作成する", new_label_path %>
+<%= link_to "ラベル一覧を確認する", labels_path %>
 <br>
 <%= link_to t('helpers.submit.sort_expired'), tasks_path(sort_expired: "true") %>
 <br>

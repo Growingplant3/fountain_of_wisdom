@@ -1,0 +1,21 @@
+<h1>ラベル一覧を確認する</h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">ラベル名</div>
+    <table class="table">
+      <% @labels.each do |label| %>
+        <tbody>
+          <tr>
+            <th><%= label.name %></th>
+            <td>編集する</td>
+            <td>
+              <%= link_to "削除する", label_path(label), method: :delete, data: { confirm: t('helpers.submit.really?') } %>
+            </td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
+
+  <%= link_to "ラベルを作成する", new_label_path %>
+</div>
