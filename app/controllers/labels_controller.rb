@@ -1,4 +1,5 @@
 class LabelsController < ApplicationController
+  before_action :sign_in_check
   before_action :set_label, only: %i[edit update destroy]
 
   def index
