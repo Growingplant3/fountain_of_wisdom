@@ -1,5 +1,5 @@
 class LabelsController < ApplicationController
-  before_action :set_label, only: %i[destroy]
+  before_action :set_label, only: %i[edit update destroy]
 
   def index
     @labels = current_user.labels
@@ -18,6 +18,19 @@ class LabelsController < ApplicationController
       flash.now[:danger] = "ラベルの登録に失敗しました。"
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @label.update(label_params)
+      flash[:notice] = "ラベルの編集に成功しました。"
+      redirect_to labels_path
+    else
+      flash.now[:danger] = "ラベルの編集に失敗しました。"
+      render :edit
+    end  
   end
 
   def destroy
