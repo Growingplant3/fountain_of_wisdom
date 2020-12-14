@@ -41,6 +41,13 @@ RSpec.describe 'ラベル管理機能', type: :system do
         click_on "更新する"
         expect(page.text).to include "変更したラベル"
       end
+
+      it '作成済みラベルが削除できる' do
+        page.accept_confirm do
+          click_on "削除する", match: :first
+        end
+        expect(page.text).not_to include "正しいラベル"
+      end
     end
   end
 end
