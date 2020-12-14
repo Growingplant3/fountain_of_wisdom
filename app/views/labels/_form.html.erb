@@ -10,7 +10,7 @@
 <% end %>
 
 <div class="jumbotron">
-  <%= form_with(model: label, local: true) do |f| %>
+  <%= form_with(model: label, local: true, url: change_root) do |f| %>
     <div class="form-group">
       <%= f.label :name %>
       <%= f.text_field :name, class: "form-control" %>
