@@ -11,7 +11,6 @@
 
   <body>
     <div class="container">
-      <% unless @error %>
         <% flash.each do |key, value| %>
           <div class="alert alert-warning alert-dismissible fade in" role="alert">
             <p>
@@ -29,8 +28,7 @@
               <li><%= link_to t("activerecord.title.session.new"), new_session_path %></li>
             <% end %>
           </ul>
-        <% end %>
-      </div>
+        </div>
       <%= yield %>
     </div>
   </body>
