@@ -1,0 +1,28 @@
+<% if label.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <h2><%= pluralize(label.errors.count, t('errors.messages.can_not_create_because_have_any_error')) %></h2>
+    <ul>
+      <% label.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="jumbotron">
+  <%= form_with(model: label, local: true) do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <% case action_name %>
+    <% when "new","create" %>
+      <%= f.submit t('helpers.submit.create') %>
+    <% when "edit" %>
+      <%= f.submit t('helpers.submit.update') %>  
+    <% end %>
+  <% end %>
+
+  <%= link_to "タスク一覧へ移動", tasks_path %>
+</div>
