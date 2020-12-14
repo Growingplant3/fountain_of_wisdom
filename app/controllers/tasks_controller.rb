@@ -11,6 +11,11 @@ class TasksController < ApplicationController
     if params[:task]
       @tasks = @tasks.ambiguous_name(params[:task][:name]) unless params[:task][:name].blank?
       @tasks = @tasks.situation_value(params[:task][:situation]) unless params[:task][:situation].blank?
+      unless params[:task][:label_id].blank?
+        label_id = Label.label_value(params[:task][:label_id]).where(user_id: current_user.id).pluck(:id)
+        tasks_id = LabelTask.where(label_id: label_id.first)
+        @tasks = Task.where(id: tasks_id)
+      end
     end
     @tasks = @tasks.page params[:page]
   end
