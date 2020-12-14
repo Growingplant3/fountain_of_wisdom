@@ -7,7 +7,9 @@
         <tbody>
           <tr>
             <th><%= label.name %></th>
-            <td>編集する</td>
+            <td>
+              <%= link_to "編集する", edit_label_path(label) %>
+            </td>
             <td>
               <%= link_to "削除する", label_path(label), method: :delete, data: { confirm: t('helpers.submit.really?') } %>
             </td>
