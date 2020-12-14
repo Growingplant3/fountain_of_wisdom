@@ -25,6 +25,13 @@
         <%= f.select :situation, Task.situations_i18n.invert, { include_blank: true }, class: "form-control" %>
       </div>
 
+      <% if current_user.labels.present? %>
+        <div>
+          <%= f.label "ラベル一覧" %>
+          <%= f.select :label_id, current_user.labels.pluck(:name), { include_blank: true }, class: "form-control" %>
+        </div>
+      <% end %>
+
       <%= f.submit t('helpers.submit.search') %>
     <% end %>
   </div>
