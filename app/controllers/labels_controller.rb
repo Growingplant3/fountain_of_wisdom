@@ -13,7 +13,7 @@ class LabelsController < ApplicationController
     @label = current_user.labels.new(label_params)
     if @label.save
       flash[:notice] = "ラベルの登録に成功しました。"
-      redirect_to label_path(@label)
+      redirect_to labels_path
     else
       flash.now[:danger] = "ラベルの登録に失敗しました。"
       render :new
