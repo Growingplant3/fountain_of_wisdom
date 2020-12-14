@@ -48,3 +48,9 @@ label_names = ["遊び", "買い物", "旅行", "家族", "友達", "学校", "�
 label_names.each do |label_name|
   Label.create(name: label_name,user_id: 3)
 end
+
+10.times do
+  name = "user_" + alphabet_array2.shift
+  email = name + "@gmail.com"
+  User.create(name: name, email: email, password: "password", password_confirmation: "password", admin: "not_admin" )
+end
