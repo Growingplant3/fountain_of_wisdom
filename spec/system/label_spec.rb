@@ -4,14 +4,22 @@ RSpec.describe 'ラベル管理機能', type: :system do
   let(:label) { FactoryBot.create(:label, user: general_user) }
   let(:rare_label) { FactoryBot.create(:rare_label, user: general_user) }
   let(:common_label) { FactoryBot.create(:common_label, user: general_user) }
-  before {
-    general_user
-    visit new_session_path
-    fill_in "session_email", with: "general@example.com"
-    fill_in "session_password", with: "password"
-    find("#create_tag").click
-  }
   describe '新規作成機能' do
+    before {
+      general_user
+      visit new_session_path
+      fill_in "session_email", with: "general@example.com"
+      fill_in "session_password", with: "password"
+      find("#create_tag").click
+    }
+    context "ラベルコントローラー" do
+      it "ログインしていなければログインページに戻される" do
+        click_on "ログアウトする"
+        visit new_label_path
+        expect(page.text).to include "ログインする必要があります"
+      end
+    end
+
     context 'ラベルを新規作成した場合' do
       it '作成したラベルが表示される' do
         visit new_label_path
@@ -24,10 +32,15 @@ RSpec.describe 'ラベル管理機能', type: :system do
 
   describe '一覧表示' do
     before {
-    label
-    rare_label
-    common_label
-    visit labels_path
+      general_user
+      visit new_session_path
+      fill_in "session_email", with: "general@example.com"
+      fill_in "session_password", with: "password"
+      find("#create_tag").click
+      label
+      rare_label
+      common_label
+      visit labels_path
     }
     context '一覧表示画面に遷移した場合' do
       it '作成済みラベル一覧が表示される' do
